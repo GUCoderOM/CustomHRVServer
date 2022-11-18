@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from hrv.forms import UserForm, UserProfileForm,UserWatchForm
 from hrv.models import User, UserProfile
 from django.contrib.auth import authenticate, login,logout
+from .data_processing import enqueue, hrv_generator, get_ppg
+
 
 
 ppg = []
