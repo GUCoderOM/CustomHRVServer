@@ -14,7 +14,9 @@ from hrv.forms import UserForm, UserProfileForm,UserWatchForm
 from hrv.models import User, UserProfile
 from django.contrib.auth import authenticate, login,logout
 
-
+global ppg_data, ppg, sampling_rate
+global measures
+global num
 ppg = []
 measures = {}
 num = 0
@@ -55,9 +57,7 @@ def post(request):
     return render(request, 'hrv/measures.html',context = {'measures':measures}) # ADDED
 '''
 def measures(request):
-    global ppg_data, ppg, sampling_rate
-    global measures
-    global num
+
     if request.method == 'POST':  # 当提交表单时
         # 判断是否传参
         num += 1
@@ -175,9 +175,7 @@ def user_logout(request):
     return redirect(reverse('hrv:index'))
 
 def user(request,username):
-    global ppg_data, ppg, sampling_rate
-    global measures
-    global num
+
     if request.method == 'POST':  # 当提交表单时
         # 判断是否传参
         num += 1
