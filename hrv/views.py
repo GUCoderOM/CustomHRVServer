@@ -19,48 +19,17 @@ from django.contrib.auth import authenticate, login,logout
 ppg = []
 measures = {}
 num = 0
-file = 'hrv/PPG.csv'
-data = pd.read_csv(file)
-top = data.loc[:5, ['time', 'stamp']]
 # Create your views here.
 
 def index(request):
-    # global ppg, ppg_data, measures
-    # sampling_rate, ppg, ppg_data = get_ppg(100, ppg_data)
-    # working_data, measures = hrv_generator(measures, ppg, sampling_rate)
     return render(request, 'hrv/index.html',context = {})
 
 
-# 接口函数
-'''
-def post(request):
-    global ppg_data, ppg, sampling_rate
-    global measures
-    global num
-    if request.method == 'POST':  # 当提交表单时
-        # 判断是否传参
-        num += 1
-        print(num)
-        data = json.loads(request.body)
-        # print(data["total_event"])
-        if len(data):
-            ppg_data = enqueue(ppg_data, data)
-            sampling_rate, ppg, ppg_data = get_ppg(ppg_data, 60)
-            working_data, measures = hrv_generator(measures, ppg, sampling_rate)
-    # return render(request, "measures.html", {"measures": measures})
-    template = loader.get_template('measures.html')
-    context = {
-        "measures": measures
-    }
-    #return HttpResponse(template.render(context, request))
-    return render(request, 'hrv/measures.html',context = {'measures':measures}) # ADDED
-'''
 def measures(request):
     global ppg_data, ppg, sampling_rate
     global measures
     global num
-    if request.method == 'POST':  # 当提交表单时
-        # 判断是否传参
+    if request.method == 'POST':
         num += 1
         print(num)
         data = json.loads(request.body)
