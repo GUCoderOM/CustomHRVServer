@@ -7,11 +7,13 @@
     <h5>Below is some data from your watch, {{watch}}</h5>
     <tbody>
           {% for key, value in measures.items %}
+          {% if value %}
               <tr>
                   <td>{{ key }}</td>
                   <td>{{ value }}</td>
                   {% endfor %}
               </tr>
+            {% endif %}
            </tbody>
   </table>
 
