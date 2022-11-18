@@ -1,0 +1,161 @@
+html{
+  text-align: center;
+  font-size: 150%;
+  font-family: Gothic,CenturyGothic,AppleGothic,sans-serif;
+  height: 100%;
+}
+body{
+  background-color: #dbd7d000 !important;
+}
+.body{
+  max-height: auto;
+  height: auto;
+}
+.navbar{
+  background-color: rgb(0, 0, 0,0.9);
+}
+.mr-auto .nav-link{
+  color: white !important;
+}
+.main-action, .main-action .nav-link{
+  border: 1px solid white !important;
+  color: black !important;
+  transition-duration: 0.5s;
+  background-color: white !important;
+
+}
+.main-action:hover,.main-action .nav-link:hover {
+  background-color: black !important;
+  color: white !important;
+}
+.mr-auto a:hover{
+  text-decoration: underline !important;
+
+}
+.banner{
+  width: 100%;
+  height: 500px !important;
+}
+.banner img{
+  float: right;
+  object-fit: cover;
+  width: 30%;
+  padding-top: 50px;
+  padding-right: 50px;
+  border-radius: 10%;
+}
+
+.responsive{
+  max-width: 100% !important;
+  height: auto;
+}
+.center{
+  height: 80px;
+  position: relative;
+}
+.center button{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
+  color: black !important;
+  border-color: black !important;
+  height: 150%;
+
+}
+
+.center #join{
+  transform: translate(-50%, -400%);
+}
+.center a{
+  color: black;
+}
+
+ button:hover a{
+  border-color: white !important;
+  background-color: black !important;
+  color: white !important;
+  text-decoration: none;
+  transition: 1s;
+
+}
+button:hover{
+  border-color: white !important;
+  background-color: black !important;
+}
+.LR{
+  width: 50%;
+  transform: translate(50%,0%);
+}
+.photo_gallery {
+    display: flex;
+    width: 100%;
+}
+.photo_gallery div {
+    display: inline-block;
+
+}
+
+.photo_gallery img{
+        object-position: center;
+        object-fit: cover;
+        height:100px;
+        width: auto;
+        border-radius: 10%;
+        display: inline-block;
+        justify-content: space-evenly;
+        margin: 20px;
+    }
+.edit{
+  height:200px;
+  width: auto;
+  border-radius: 10%;
+  display: inline-block;
+  transform: translate(210%,0%);
+  margin-top:20px;
+}
+.profile{
+  width: 100px;
+  height: auto;
+}
+@media only screen and (max-width: 600px){
+  .photo_gallery img{
+    object-position: center;
+    object-fit: cover;
+    height:60px;
+    width: auto;
+    border-radius: 10%;
+    display: inline-block;
+    justify-content: space-evenly;
+    margin: 10px;
+  }
+
+  .edit{
+    height:120px;
+    width: auto;
+    border-radius: 10%;
+    display: inline-block;
+    transform: translate(210%,0%);
+    margin-top:10px;
+  }
+
+  .banner{
+    width: 100%;
+    height: 250px !important;
+  }
+  .banner img{
+    float: right;
+    object-fit: cover;
+    width: 30%;
+    padding-top: 20px;
+    padding-right: 20px;
+    border-radius: 10%;
+  }
+
+  .center{
+    height: 40px;
+    position: relative;
+  }
+}

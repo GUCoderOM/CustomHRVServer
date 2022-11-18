@@ -1,0 +1,30 @@
+{% extends 'hrv/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block body_block %}
+<h1>Register!</h1>
+  {% if registered %}
+    <strong>Thank you for registering!</strong>
+    <a href="{% url 'hrv:index' %}">Return to the homepage.</a><br />
+  {% else %}
+    <form class = "LR" method="post" action="{% url 'hrv:register' %}" enctype="multipart/form-data">
+
+     {% csrf_token %}
+
+     <!-- Display each form -->
+     {{ user_form|crispy }}
+     {{ profile_form|crispy }}
+
+   <!-- Provide a button to click to submit the form. -->
+   <input type="submit" name="submit" value="Register" />
+   </form>
+ {% endif %}
+
+
+
+
+
+
+{% endblock %}

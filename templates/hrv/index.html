@@ -1,0 +1,15 @@
+{% extends 'hrv/base.html' %}
+{% load static %}
+{% block body_block%}
+<div class = "responsive banner">
+  <img src = "{% static 'images/stress.jpg' %}" />
+</div>
+
+<h1>Your stress. Made easy.</h1>
+<br /><br />
+<h3>Monitor your stress levels easily.</h3>
+{% if user.is_authenticated %}
+{% else %}
+
+{% endif %}
+{% endblock %}

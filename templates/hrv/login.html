@@ -1,0 +1,31 @@
+{% extends 'hrv/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block body_block %}
+<h1>Login</h1>
+  {% for message in messages %}
+      <div class="warning">
+          <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+          <strong>{{message}}</strong>
+      </div>
+  {% endfor %}
+    <form class = "LR"id="login_form" method="post" action="{% url 'hrv:login' %}">
+      {% csrf_token %}
+      <div class = 'form-group'>
+      Username: <input class="form-control" type="text" name="username" value="" size="50" />
+    </div>
+      <br />
+    <div class = 'form-group'>
+      Password: <input class="form-control" type="password" name="password" value="" size="50" />
+    </div>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+
+
+
+
+
+{% endblock %}

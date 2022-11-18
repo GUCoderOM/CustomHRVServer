@@ -1,7 +1,9 @@
 from django.http import HttpResponse
+from django.shortcuts import render,redirect # ADDED
 import json
 
-
+def index(request):
+    return render(request, 'hrv/index.html',context = {})
 # 定义功能
 def add_args(a, b):
     return a + b
@@ -23,4 +25,3 @@ def post(request):
 
     else:
         return HttpResponse('方法错误')
-

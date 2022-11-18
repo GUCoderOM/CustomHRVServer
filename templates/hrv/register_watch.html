@@ -1,0 +1,27 @@
+{% extends 'hrv/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block body_block %}
+{% if registered %}
+  <strong>Thank you for registering your watch!</strong>
+  <a href="{% url 'hrv:user' user.username %}">Return to your page.</a><br />
+{% else %}
+  <form class = "LR" method="post" action="{% url 'hrv:register_watch' user %}" enctype="multipart/form-data">
+
+   {% csrf_token %}
+
+   <!-- Display each form -->
+   {{ watch_form|crispy }}
+
+ <!-- Provide a button to click to submit the form. -->
+ <input type="submit" name="submit" value="Register" />
+ </form>
+
+
+
+
+
+{% endif %}
+{% endblock %}

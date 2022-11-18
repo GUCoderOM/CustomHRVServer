@@ -6,7 +6,7 @@ import json
 from collections import deque
 from django.utils import timezone
 import sqlite3
-from .models import PPG
+from .models import PPG 
 
 con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
@@ -78,3 +78,4 @@ if __name__ == "__main__":
     data_queue = deque()
     data_queue = enqueue(test_data, data_queue)
     print(data_queue)
+# not functional when called on command line

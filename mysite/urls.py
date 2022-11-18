@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 from . import view
+from hrv import views
 
 urlpatterns = [
+    path('',views.index,name = 'index'), # ADDED
     path("admin/", admin.site.urls),
     path("test/", view.post),
     path('polls/', include('polls.urls')),
     path("hrv/", include("hrv.urls"))
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

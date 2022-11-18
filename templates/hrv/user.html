@@ -1,0 +1,25 @@
+{% extends 'hrv/base.html' %}
+{% load static %}
+{% block body_block%}
+  <h3>Welcome, {{userprofile}}</h3>
+  <img src='{{MEDIA_URL}}{{userprofile.picture}}' class="rounded profile" alt="Profile Image">
+  {% if watch %}
+    <h5>Below is some data from your watch, {{watch}}</h5>
+    <tbody>
+          {% for key, value in measures.items %}
+              <tr>
+                  <td>{{ key }}</td>
+                  <td>{{ value }}</td>
+                  {% endfor %}
+              </tr>
+           </tbody>
+  </table>
+
+  {% else %}
+    <br /><br /><br /><br />
+    <div class = 'center'>
+      <button type="button" class="btn btn-outline-primary"><a href = "{% url 'hrv:register_watch' user %}">Register Watch</a></button>
+    </div>
+  {% endif %}
+
+{% endblock %}
