@@ -13,7 +13,6 @@ from django.contrib.auth.decorators import login_required
 from hrv.forms import UserForm, UserProfileForm,UserWatchForm
 from hrv.models import User, UserProfile
 from django.contrib.auth import authenticate, login,logout
-from .data_processing import enqueue, hrv_generator, get_ppg
 
 
 
@@ -66,8 +65,8 @@ def measures(request):
         print(num)
         data = json.loads(request.body)
         if len(data):
-            ppg_data = enqueue(ppg_data, data)
-            sampling_rate, ppg, ppg_data = get_ppg(ppg_data, 60)
+            ppg_data1 = enqueue(ppg_data, data)
+            sampling_rate, ppg, ppg_data = get_ppg(ppg_data1, 60)
             working_data, measures = hrv_generator(measures, ppg, sampling_rate)
     template = loader.get_template('measures.html')
     return render(request, 'hrv/measures.html',context = {'measures':measures,'top':top})
