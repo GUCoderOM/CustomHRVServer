@@ -5,18 +5,7 @@
   <img src='{{MEDIA_URL}}{{userprofile.picture}}' class="rounded profile" alt="Profile Image">
   {% if watch %}
     <h5>Below is some data from your watch, {{watch}}</h5>
-    <tbody>
-          {% for key, value in measures.items %}
-          {% if value %}
-              <tr>
-                  <td>{{ key }}</td>
-                  <td>{{ value }}</td>
-                  {% endif %}
-                  {% endfor %}
-              </tr>
-
-           </tbody>
-  </table>
+    
 
   {% else %}
     <br /><br /><br /><br />
