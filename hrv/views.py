@@ -15,7 +15,7 @@ from hrv.models import User, UserProfile
 from django.contrib.auth import authenticate, login,logout
 
 
-
+ppg_data = deque()
 ppg = []
 measures = {}
 num = 0
