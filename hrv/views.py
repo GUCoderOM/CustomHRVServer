@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from hrv.forms import UserForm, UserProfileForm,UserWatchForm
 from hrv.models import User, UserProfile
 from django.contrib.auth import authenticate, login,logout
-
+import csv
 
 ppg_data = deque()
 ppg = []
@@ -25,20 +25,28 @@ def index(request):
     return render(request, 'hrv/index.html',context = {})
 
 
-def measures(request):
+def post(request):
     global ppg_data, ppg, sampling_rate
     global measures
     global num
-    if request.method == 'POST':
-        num += 1
-        print(num)
-        data = json.loads(request.body)
-        if len(data):
-            ppg_data = enqueue(ppg_data, data)
-            sampling_rate, ppg, ppg_data = get_ppg(ppg_data, 60)
-            working_data, measures = hrv_generator(measures, ppg, sampling_rate)
-    template = loader.get_template('measures.html')
-    return render(request, 'hrv/measures.html',context = {'measures':measures,})
+    with open('test.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        if request.method == 'POST':
+            num += 1
+            print(num)
+            data = json.loads(request.body)
+            if len(data):
+                ppg_data = enqueue(ppg_data, data)
+                sampling_rate, ppg, ppg_data = get_ppg(ppg_data, 60)
+                working_data, measures = hrv_generator(measures, ppg, sampling_rate)
+                if len(ppg):
+                    print("SUCCESS!")
+                    print(measures['bpm'])
+                    writer.writerow([measures['bpm']])
+                else:
+                    print('FAILURE!')
+
+    return render(request, 'hrv/post.html',context = {'measures':measures,})
 
 
 def register(request):

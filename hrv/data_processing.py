@@ -6,7 +6,7 @@ import json
 from collections import deque
 from django.utils import timezone
 import sqlite3
-from .models import PPG 
+from .models import PPG
 
 con = sqlite3.connect("db.sqlite3")
 cur = con.cursor()
@@ -38,8 +38,10 @@ def get_ppg(data_queue, window_size, data_freq=100):
     signal = []
     length = len(data_queue)
     # data_queue.popleft()
+    print("Length here", length)
     window_size = window_size
     if length > window_size:
+        print("arrived")
         timer = []
         for i in range(length - window_size):
             data_queue.popleft()  # should save
@@ -48,7 +50,6 @@ def get_ppg(data_queue, window_size, data_freq=100):
             signal += data_queue[i]["ppg"]
         sampling_rate = int(len(signal) / (timer[-1] - timer[0]) * 1e9)
         # print(sampling_rate)
-        # print(signal)
     return sampling_rate, signal, data_queue
 
 
