@@ -1,7 +1,7 @@
 from django import forms
 from hrv.models import User
 from django.contrib.auth.models import User
-from hrv.models import UserProfile, UserWatch
+from hrv.models import UserProfile
 
 WATCH_CHOICES= [
 ('TicWatch Pro 3 GPS', 'TicWatch Pro 3 GPS'),
@@ -27,5 +27,5 @@ class UserProfileForm(forms.ModelForm):
 class UserWatchForm(forms.ModelForm):
     watch = forms.CharField(label='Select your watch', widget=forms.Select(choices=WATCH_CHOICES))
     class Meta:
-        model = UserWatch
+        model = UserProfile
         fields = ('watch',)

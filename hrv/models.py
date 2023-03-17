@@ -1,10 +1,10 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-
+import json
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     #username = models.CharField(max_length=120, unique=True)
     # The additional attributes we wish to include.
     slug = models.SlugField(unique = True)
@@ -12,6 +12,8 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     watch = models.CharField(max_length=200,unique=False, blank=True)
+    data = models.JSONField(null=True)
+    unprocessed = models.JSONField(default = dict)
     #pictures = models.ImageField(upload_to='', blank = True)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
@@ -19,10 +21,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-class UserWatch(models.Model):
-    watch = models.CharField(max_length=200,unique=False, blank = True)
-    class Meta:
-        verbose_name_plural = "watches"
+
 
 
 

@@ -3,15 +3,97 @@
 {% block body_block%}
   <h3>Welcome, {{userprofile}}</h3>
   <img src='{{MEDIA_URL}}{{userprofile.picture}}' class="rounded profile" alt="Profile Image">
+  {% if today_len %}
+    <p>You have {{today_len}} entries captured today!</p>
+  {% else %}
+    <h5>No data captured today.</h5>
+  {% endif %}
   {% if watch %}
     <h5>Below is some data from your watch, {{watch}}</h5>
-    
+
 
   {% else %}
+  <!--
     <br /><br /><br /><br />
     <div class = 'center'>
       <button type="button" class="btn btn-outline-primary"><a href = "{% url 'hrv:register_watch' user %}">Register Watch</a></button>
     </div>
+  -->
   {% endif %}
+  {% if today %}
+    <p>Take a look at your latest measure! {{today}}</p>
+  {% else %}
+    <p>No measures recorded today.</p>
+  {% endif %}
+  {% if entries %}
+    <p>You have a total of {{entries}} entries</p>
+  {% else %}
+    <p>You have no recorded entries so far.</p>
+  {% endif %}
+  {% if data %}
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Weekly Data</h2>
+        <hr>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>BPM</th>
+              <th>IBI</th>
+              <th>SDNN</th>
+              <th>SDSD</th>
+              <th>RMSSD</th>
+              <th>PNN20</th>
+              <th>PNN50</th>
+              <th>HR_MAD</th>
+              <th>SD1</th>
+              <th>SD2</th>
+              <th>S</th>
+              <th>Breathing Rate</th>
+              <th>VLF</th>
+              <th>LF</th>
+              <th>HF</th>
+              <th>P Total</th>
+              <th>VLF Perc</th>
+              <th>LF Perc</th>
+              <th>HF Perc</th>
+              <th>LF NU</th>
+              <th>HF NU</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for date, value in data.items %}
+              <tr>
+                <td>{{ date }}</td>
+                <td>{{ value.bpm }}</td>
+                <td>{{ value.ibi }}</td>
+                <td>{{ value.sdnn }}</td>
+                <td>{{ value.sdsd }}</td>
+                <td>{{ value.rmssd }}</td>
+                <td>{{ value.pnn20 }}</td>
+                <td>{{ value.pnn50 }}</td>
+                <td>{{ value.hr_mad }}</td>
+                <td>{{ value.sd1 }}</td>
+                <td>{{ value.sd2 }}</td>
+                <td>{{ value.s }}</td>
+                <td>{{ value.breathingrate }}</td>
+                <td>{{ value.vlf }}</td>
+                <td>{{ value.lf }}</td>
+                <td>{{ value.hf }}</td>
+                <td>{{ value.p_total }}</td>
+                <td>{{ value.vlf_perc }}</td>
+                <td>{{ value.lf_perc }}</td>
+                <td>{{ value.hf_perc }}</td>
+                <td>{{ value.lf_nu }}</td>
+                <td>{{ value.hf_nu }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
+
 
 {% endblock %}

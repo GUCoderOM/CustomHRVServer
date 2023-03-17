@@ -38,10 +38,8 @@ def get_ppg(data_queue, window_size, data_freq=100):
     signal = []
     length = len(data_queue)
     # data_queue.popleft()
-    print("Length here", length)
     window_size = window_size
     if length > window_size:
-        print("arrived")
         timer = []
         for i in range(length - window_size):
             data_queue.popleft()  # should save
@@ -61,13 +59,12 @@ def insert(data):
 
 
 def hrv_generator(measures, signal, sampling_rate=100):
-    print(sampling_rate)
     working_data = -1
     measures = measures
     if len(signal):
         ppg_clean = nk.ppg_clean(signal, sampling_rate=sampling_rate)
-        # print(ppg_clean)
-        working_data, measures = hp.process(ppg_clean, sampling_rate, calc_freq=True)
+        ppg_scaled = hp.scale_data(signal)
+        working_data, measures = hp.process(ppg_scaled, sampling_rate, calc_freq=True)
     return working_data, measures
 
 
@@ -79,4 +76,6 @@ if __name__ == "__main__":
     data_queue = deque()
     data_queue = enqueue(test_data, data_queue)
     print(data_queue)
+    #ppg_filtered = nk.signal_filter(signal, lowcut=1, highcut=10, method='butterworth', order=4)     # print(ppg_clean)
+
 # not functional when called on command line
