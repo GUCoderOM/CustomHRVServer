@@ -12,7 +12,7 @@ import random
 import json
 import string
 import time
-testing = True
+testing = False
 def populate():
     f = open('data.json')
     data_file = json.load(f)
@@ -23,30 +23,30 @@ def populate():
     l = m['2022-11-26T18:45:26.471']
     #print(list(l.keys()))
     dict_slice(item_dict, n*2,n - 1)
-    users = [{'username': 'Yousuf','age':21,
+    users = [{'username': 'Yousuf','age':21,'email': 'Yousuf@gmail.com',
                 'data':dict_slice(item_dict, n,- 1)},
-            {'username': 'Jack','age':25,
+            {'username': 'EmmaM','age':25,'email': 'Emma@gmail.com',
                         'data':dict_slice(item_dict, n*2,n - 1)},
-            {'username': 'Joseph','age':19,
+            {'username': 'Joseph','age':19,'email': 'Joseph@gmail.com',
                         'data':dict_slice(item_dict, n*3,n*2 - 1)},
-            {'username': 'Adam','age':55,
+            {'username': 'Adam','age':55,'email': 'Adam@gmail.com',
                         'data':dict_slice(item_dict, n*4,n*3 - 1)},
-            {'username': 'Rebecca','age':18,
+            {'username': 'Rebecca','age':18,'email': 'Rebecca@gmail.com',
                         'data':dict_slice(item_dict, n*5,n*4 - 1)},
-            {'username': 'Roberta','age':19,
+            {'username': 'Roberta','age':19,'email': 'Roberta@gmail.com',
                         'data':dict_slice(item_dict, n*6,n*5 - 1)},
-            {'username': 'Isabella','age':34,
+            {'username': 'Isabella','age':34,'email': 'Isabella@gmail.com',
                         'data':dict_slice(item_dict, n*7,n*6 - 1)},
-            {'username': 'Smith','age':40,
+            {'username': 'Smith','age':40,'email': 'Smith@gmail.com',
                         'data':dict_slice(item_dict, n*8,n*7 - 1)},
-            {'username': 'Lars','age':64,
+            {'username': 'Lars','age':64,'email': 'Lars@gmail.com',
                         'data':dict_slice(item_dict, n*9,n*8 - 1)},
-            {'username': 'Leopold','age':20,
+            {'username': 'Leopold','age':20,'email': 'Leopold@gmail.com',
                         'data':dict_slice(item_dict, n*10,n*9 - 1)},]
     for user in users:
         try:
             if not testing:
-                u,mypass = add_UserProfile(user['username'],user['age'],user['data'])
+                u,mypass = add_UserProfile(user['username'],user['age'],user['email'])
                 print("Successfully created user",u.user,'with password:',mypass)
             else:
                 print("Test passed")
@@ -68,14 +68,14 @@ def create_user(username):
         return [user,mypass]
     except Exception as e:
         print(e)
-def add_UserProfile(username,age,data):
+def add_UserProfile(username,age,email):
     arr = create_user(username)
     user = arr[0]
     mypass = arr[1]
     u = UserProfile.objects.get_or_create(user= user)[0]
     u.user = user
     u.age = age
-    u.data=data
+    u.email=email
     u.save()
     return u,mypass
 def get_random_string(length):
@@ -112,6 +112,6 @@ def unprocessed_count_live(delay):
 # Start execution here!
 if __name__ == '__main__':
     print("Populating HRVServer")
-    #populate()
+    populate()
     #unprocessed_count()
-    unprocessed_count_live(2)
+    #unprocessed_count_live(2)

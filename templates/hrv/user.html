@@ -3,37 +3,11 @@
 {% block body_block%}
   <h3>Welcome, {{userprofile}}</h3>
   <img src='{{MEDIA_URL}}{{userprofile.picture}}' class="rounded profile" alt="Profile Image">
-  {% if today_len %}
-    <p>You have {{today_len}} entries captured today!</p>
-  {% else %}
-    <h5>No data captured today.</h5>
-  {% endif %}
-  {% if watch %}
-    <h5>Below is some data from your watch, {{watch}}</h5>
 
-
-  {% else %}
-  <!--
-    <br /><br /><br /><br />
-    <div class = 'center'>
-      <button type="button" class="btn btn-outline-primary"><a href = "{% url 'hrv:register_watch' user %}">Register Watch</a></button>
-    </div>
-  -->
-  {% endif %}
-  {% if today %}
-    <p>Take a look at your latest measure! {{today}}</p>
-  {% else %}
-    <p>No measures recorded today.</p>
-  {% endif %}
-  {% if entries %}
-    <p>You have a total of {{entries}} entries</p>
-  {% else %}
-    <p>You have no recorded entries so far.</p>
-  {% endif %}
   {% if data %}
     <div class="row">
       <div class="col-md-12">
-        <h2>Weekly Data</h2>
+        <h2>Recent Data</h2>
         <hr>
         <table class="table table-striped">
           <thead>
