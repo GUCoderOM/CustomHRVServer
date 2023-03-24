@@ -1,4 +1,4 @@
-#HRVServer Sensor Tracking System
+# HRVServer Sensor Tracking System
 This repository contains the instructions on how to run the HRVServer Sensor Tracking System.
 
 Requirements
