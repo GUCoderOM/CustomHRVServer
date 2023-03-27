@@ -159,7 +159,7 @@ def save_data(time,measures,slug,save):
 # Start execution here!
 if __name__ == '__main__':
     print("Testing data_processing")
-    test_data_processing("y", False)
+    test_data_processing("y", True)
     #save_user_data('y')
     #test_data_filtration(username)
     #testing()
